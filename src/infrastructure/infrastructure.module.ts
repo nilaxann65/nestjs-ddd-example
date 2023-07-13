@@ -15,7 +15,7 @@ const mongooseSchemas = [{
 
 @Module({
     imports: [
-        MongooseModule.forRoot(`mongodb://admin:password123@mongo-atlas:27017/accounts?authSource=admin&readPreference=primary&ssl=false&directConnection=true`),
+        MongooseModule.forRoot(`mongodb://admin:password123@mongo-ddd:27017/accounts?authSource=admin&readPreference=primary&ssl=false&directConnection=true`),
         MongooseModule.forFeature(mongooseSchemas)
     ],
     controllers: [],
@@ -24,8 +24,9 @@ const mongooseSchemas = [{
         CatMongoRepository
     ],
     exports: [
+        MongooseModule.forFeature(mongooseSchemas),
         OrganizationMongoRepository,
         CatMongoRepository,
     ]
 })
-export class InfrastructureModule { }
+export class InfrastructureModule { };

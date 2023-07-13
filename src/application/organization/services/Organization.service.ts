@@ -10,8 +10,9 @@ export class OrganizationService {
         private organizationRepository: IOrganizationRepository
     ) { }
 
-    async findById(id: string): Promise<OrganizationEntity> {
-        return await this.organizationRepository.findById(id);
+    async findById(id: string): Promise<any> {
+        const result = await this.organizationRepository.findById(id);
+        return result;
     }
 
     async create(data: OrganizationCreateDto): Promise<string> {

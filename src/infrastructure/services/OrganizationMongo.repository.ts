@@ -18,8 +18,7 @@ export class OrganizationMongoRepository implements IOrganizationRepository {
     }
 
     async findById(id: string): Promise<OrganizationEntity> {
-        const organization = await this.organizationModel.findById(id);
-        return organization;
+        return await this.organizationModel.findById(id);
     }
 
     async delete(id: string): Promise<boolean> {

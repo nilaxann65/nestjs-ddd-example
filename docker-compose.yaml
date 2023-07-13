@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  mongo-ddd:
+    container_name: mongodb-ddd-container
+    image: mongo:6.0.1
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    command: [ "--auth" ]
+    ports:
+      - 2999:27017
+    volumes:
+      - ddd-mongo-volume:/data/db
+    networks:
+      - ddd-network
+
+  nestjs-ddd:
+    container_name: nestjs-container
+    restart: always
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    command: npm start
+    links:
+      - mongo-ddd
+    networks:
+      - ddd-network
+
+volumes:
+  ddd-mongo-volume:
+
+
+networks:
+  ddd-network:
+    driver: bridge

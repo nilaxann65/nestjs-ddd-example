@@ -23,4 +23,4 @@ import { OrganizationMongoRepository } from 'src/infrastructure/services/Organiz
         useClass: OrganizationMongoRepository
     }]
 })
-export class DomainModule { }
+export class DomainModule { };

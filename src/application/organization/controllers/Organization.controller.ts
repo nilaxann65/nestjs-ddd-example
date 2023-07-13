@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { OrganizationService } from "../services/Organization.service";
 import { OrganizationCreateDto } from "../dtos/OrganizationCreate.dto";
 
@@ -9,7 +9,7 @@ export class OrganizationController {
     ) { }
 
     @Get(":id")
-    async findById(id: string) {
+    async findById(@Param("id") id: string): Promise<any> {
         return await this.organizationService.findById(id);
     }
 
@@ -19,7 +19,7 @@ export class OrganizationController {
     }
 
     @Delete(":id")
-    async delete(id: string): Promise<boolean> {
+    async delete(@Param("id") id: string): Promise<boolean> {
         return await this.organizationService.delete(id);
     }
 }
